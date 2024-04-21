@@ -9,8 +9,8 @@ export default function DefaultLayout({
 }) {
   return (
     <>
-      <div className="flex h-screen overflow-hidden">
-        <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+      <div className="">
+        <div className="relative flex flex-1 flex-col space-y-10">
           <Navbar />
           <main>
             <div className="mx-auto p-4 md:p-6 2xl:p-10">{children}</div>

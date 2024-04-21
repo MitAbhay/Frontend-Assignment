@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 const Navbar = () => {
   const pathname = usePathname();
   return (
-    <div className="bg-white">
+    <div className="bg-white fixed w-full top-0 left-0 z-10">
       <div className="mx-auto flex h-20 items-center gap-12 px-4 sm:px-6 lg:px-8 p-2 border-gray-200 border-b-2">
         <Link className="block text-teal-600" href="/">
           <svg
