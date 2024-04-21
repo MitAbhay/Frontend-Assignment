@@ -9,17 +9,20 @@ import Image from "next/image";
 const Logs = () => {
   const params = useParams();
   const [logs, setLogs] = useState([]);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
   const [loading, setLoading] = useState(true);
   const terminalRef = useRef(null);
   const [start, setStart] = useState(String);
   const [end, setEnd] = useState(String);
+  const [liveLogsCount, setLiveLogsCount] = useState(0);
 
   useEffect(() => {
     const visibleHandler = () => {
       if (terminalRef.current) {
         const scrolled = terminalRef.current.scrollTop;
-        setVisible(scrolled <= 0);
+        setVisible(scrolled > prevScrollPos);
+        setPrevScrollPos(scrolled);
       }
     };
 
@@ -27,32 +30,39 @@ const Logs = () => {
     return () => {
       window.removeEventListener("scroll", visibleHandler);
     };
-  }, []);
+  }, [prevScrollPos]);
 
   useEffect(() => {
-    const startTs = Date.now() - params.timestamp;
-    const endTs = Date.now();
-    const limit = 180;
-    var start = startTs;
-    var d = new Date(start);
-    var ds = d.toLocaleString();
-    setStart(ds);
-    var end = endTs;
-    var e = new Date(end);
-    var es = e.toLocaleString();
-    setEnd(es);
-    setLoading(true);
-    MimicLogs.fetchPreviousLogs({ startTs, endTs, limit })
-      .then((data) => {
-        setLogs(data);
-        console.log(data);
-        setLoading(false);
-        scrollToBottom();
-      })
-      .catch((error) => {
-        console.error("Error fetching logs", error);
-        setLoading(false);
-      });
+    const interval = setInterval(() => {
+      const startTs = Date.now() - params.timestamp;
+      const endTs = Date.now();
+      const limit = 180;
+      var start = startTs;
+      var d = new Date(start);
+      var ds = d.toLocaleString();
+      setStart(ds);
+      var end = endTs;
+      var e = new Date(end);
+      var es = e.toLocaleString();
+      setEnd(es);
+      setLoading(true);
+      MimicLogs.fetchPreviousLogs({ startTs, endTs, limit })
+        .then((data) => {
+          setLogs(data.slice().reverse());
+          setLiveLogsCount(data.length);
+          console.log(data);
+          setLoading(false);
+          if (visible) {
+            scrollToBottom();
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching logs", error);
+          setLoading(false);
+        });
+    }, 2000);
+
+    return () => clearInterval(interval);
   }, [params.timestamp]);
 
   const scrollToBottom = () => {
@@ -65,7 +75,7 @@ const Logs = () => {
     <DefaultLayout>
       <div className="">
         <h1 className="p-2 text-sm text-right ">
-          Showing logs for {start} to {end}
+          Showing logs for {start} → {end}
         </h1>
         <div className="flex justify-center items-center bg-gray-800 text-sm rounded-t-md text-gray-400 text-center mt-0 p-1 gap-2">
           <svg
@@ -81,7 +91,7 @@ const Logs = () => {
               fill="#E0ECFD"
             />
           </svg>
-          Loading previous logs
+          Loading previous {liveLogsCount} logs
         </div>
         <div
           id="terminal"

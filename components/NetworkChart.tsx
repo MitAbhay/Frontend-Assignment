@@ -41,7 +41,7 @@ const NetworkChart = ({ dataPoints, dataTs }) => {
         enabled: false,
       },
       stroke: {
-        curve: "smooth",
+        curve: "straight",
       },
       title: {
         text: "Network Usage",

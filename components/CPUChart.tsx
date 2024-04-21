@@ -9,11 +9,11 @@ const CPUChart = ({ dataPoints, dataTs }) => {
         data: dataPoints["CPU Usage"][0],
       },
       {
-        name: "requested",
+        name: "Requested",
         data: dataPoints["CPU Usage"][1],
       },
       {
-        name: "limit",
+        name: "Limits",
         data: dataPoints["CPU Usage"][2],
       },
     ],
@@ -38,7 +38,7 @@ const CPUChart = ({ dataPoints, dataTs }) => {
         enabled: false,
       },
       stroke: {
-        curve: "smooth",
+        curve: "straight",
       },
       title: {
         text: "CPU Usage",

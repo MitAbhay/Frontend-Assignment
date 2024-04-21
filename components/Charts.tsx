@@ -12,7 +12,7 @@ const Charts = ({ dataPoints, dataTs, start, end }) => {
         <div className="flex items-center bg-white mt-2 m-4 ">
           <div className="text-2xl font-extrabold mr-2 ">Metrics</div>
           <div className="p-1 text-sm">
-            Showing logs for {start} to {end}
+            {start} → {end}
           </div>
         </div>
         <hr className="text-[#CEE0F8]" />

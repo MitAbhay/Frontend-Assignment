@@ -41,7 +41,7 @@ const MemoryChart = ({ dataPoints, dataTs }) => {
         enabled: false,
       },
       stroke: {
-        curve: "smooth",
+        curve: "straight",
       },
       title: {
         text: "Memory Usage",
@@ -58,7 +58,7 @@ const MemoryChart = ({ dataPoints, dataTs }) => {
         size: 1,
       },
       xaxis: {
-        categories: new Date(dataTs["Memory Usage"][0] * 1000).getHours(),
+        categories: dataTs["Memory Usage"][0],
         // categories: ["a", "b", "c"],
       },
       yaxis: {

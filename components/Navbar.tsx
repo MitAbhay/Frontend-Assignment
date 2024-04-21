@@ -8,9 +8,17 @@ const Navbar = () => {
   const pathname = usePathname();
   const router = useRouter();
   const params = useParams();
-  const [selectedTime, setSelectedTime] = useState(
-    `Last ${params.timestamp / 60000} minutes`
-  );
+  let timeDescription;
+
+  if (params.timestamp / 60000 == 60) {
+    timeDescription = `Last ${params.timestamp / 3600000} hour`;
+  } else if (params.timestamp / 60000 > 60) {
+    timeDescription = `Last ${params.timestamp / 3600000} hours`;
+  } else {
+    timeDescription = `Last ${params.timestamp / 60000} minutes`;
+  }
+
+  const [selectedTime, setSelectedTime] = useState(timeDescription);
 
   return (
     <div className="bg-white fixed w-full top-0 left-0 z-10">

@@ -72,13 +72,6 @@ const Metrics = () => {
     Fetch(startTs, endTs);
   }, [params.timestamp]);
 
-  // console.log(graphData, "gd");
-  // console.log(graphName, "gn");
-  // console.log(lineName, "ln");
-  // console.log(dataPoints, "dp");
-  // // console.log(dataPoints["CPU Usage"][0]);
-  // console.log(dataTs, "dt");
-
   return (
     <DefaultLayout>
       {isLoading ? (
