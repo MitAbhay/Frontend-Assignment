@@ -1,10 +1,12 @@
 "use Client";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const Navbar = () => {
   const pathname = usePathname();
+  const router = useRouter();
+
   return (
     <div className="bg-white fixed w-full top-0 left-0 z-10">
       <div className="mx-auto flex h-20 items-center gap-12 px-4 sm:px-6 lg:px-8 p-2 border-gray-200 border-b-2">
@@ -107,7 +109,7 @@ const Navbar = () => {
                   pathname.includes("metrics") &&
                   "font-bold border-blue-800 border-b-4"
                 }`}
-                href="/metrics"
+                href="/metrics/300000"
               >
                 <Image
                   width={32}
@@ -130,7 +132,7 @@ const Navbar = () => {
                   pathname.includes("logs") &&
                   "font-bold border-blue-800 border-b-4"
                 }`}
-                href="/logs"
+                href="/logs/300000"
               >
                 <Image
                   width={32}
@@ -156,7 +158,7 @@ const Navbar = () => {
                 className="bg-white border-2 border-slate-300 rounded-md p-1"
               >
                 <option
-                  //   onClick={() => navigate(`/logs/${300000}`)}
+                  onClick={() => router.push(`/logs/${300000}`)}
                   value="Last 5 minutes"
                   className="text-sm p-1"
                 >
@@ -165,7 +167,7 @@ const Navbar = () => {
                 <hr className="text-slate-400" />
 
                 <option
-                  //   onClick={() => navigate(`/logs/${900000}`)}
+                  onClick={() => router.push(`/logs/${900000}`)}
                   value="Last 15 minutes"
                   className="text-sm p-1"
                 >
@@ -173,7 +175,7 @@ const Navbar = () => {
                 </option>
                 <hr className="text-slate-400" />
                 <option
-                  //   onClick={() => navigate(`/logs/${1800000}`)}
+                  onClick={() => router.push(`/logs/${1800000}`)}
                   value="Last 30 minutes"
                   className="text-sm p-1"
                 >
@@ -181,7 +183,7 @@ const Navbar = () => {
                 </option>
                 <hr className="text-slate-400" />
                 <option
-                  //   onClick={() => navigate(`/logs/${3600000}`)}
+                  onClick={() => router.push(`/logs/${3600000}`)}
                   value="Last 1 hour"
                   className="text-sm p-1"
                 >
@@ -189,7 +191,7 @@ const Navbar = () => {
                 </option>
                 <hr className="text-slate-400" />
                 <option
-                  //   onClick={() => navigate(`/logs/${10800000}`)}
+                  onClick={() => router.push(`/logs/${10800000}`)}
                   value="Last 3 hours"
                   className="text-sm p-1"
                 >
@@ -197,7 +199,7 @@ const Navbar = () => {
                 </option>
                 <hr className="text-slate-400" />
                 <option
-                  //   onClick={() => navigate(`/logs/${21600000}`)}
+                  onClick={() => router.push(`/logs/${21600000}`)}
                   value="Last 6 hours"
                   className="text-sm p-1"
                 >
