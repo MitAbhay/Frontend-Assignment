@@ -1,10 +1,13 @@
+"use Client";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
+  const pathname = usePathname();
   return (
     <div className="bg-white">
-      <div className="mx-auto flex h-20 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8 p-2">
+      <div className="mx-auto flex h-20 items-center gap-12 px-4 sm:px-6 lg:px-8 p-2 border-gray-200 border-b-2">
         <Link className="block text-teal-600" href="/">
           <svg
             width="191"
@@ -96,17 +99,24 @@ const Navbar = () => {
           </svg>
         </Link>
 
-        <div className="flex flex-1 items-center justify-end md:justify-between">
+        <div className="flex flex-1 items-center justify-end md:justify-between px-4">
           <nav aria-label="Global" className="hidden md:block">
             <div className="flex items-center gap-6 text-sm">
               <Link
-                className=" font-bold flex hover:border-b-4 border-blue-800 cursor-pointer "
+                className={`flex hover:border-b-4 border-blue-800 cursor-pointer ${
+                  pathname.includes("metrics") &&
+                  "font-bold border-blue-800 border-b-4"
+                }`}
                 href="/metrics"
               >
                 <Image
                   width={32}
                   height={32}
-                  src={"/metrics.png"}
+                  src={
+                    pathname.includes("metrics")
+                      ? "/metrics.png"
+                      : "/metrics-gray.png"
+                  }
                   className="object-contain h-8 w-5 mt-1"
                   alt="metrics"
                 />
@@ -116,13 +126,18 @@ const Navbar = () => {
               </Link>
 
               <Link
-                className=" font-bold flex hover:border-b-4 border-blue-800 cursor-pointer"
+                className={`flex hover:border-b-4 border-blue-800 cursor-pointer ${
+                  pathname.includes("logs") &&
+                  "font-bold border-blue-800 border-b-4"
+                }`}
                 href="/logs"
               >
                 <Image
                   width={32}
                   height={32}
-                  src={"/list.png"}
+                  src={
+                    pathname.includes("logs") ? "/list-active.png" : "/list.png"
+                  }
                   className="object-contain h-4 w-4 mt-3"
                   alt="logs"
                 />
@@ -133,7 +148,7 @@ const Navbar = () => {
             </div>
           </nav>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center justify-center">
             <div className="sm:flex sm:gap-4 border-gray-700">
               <select
                 name="dropdown"
