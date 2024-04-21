@@ -77,7 +77,7 @@ const Metrics = () => {
   // console.log(lineName, "ln");
   // console.log(dataPoints, "dp");
   // // console.log(dataPoints["CPU Usage"][0]);
-  console.log(dataTs, "dt");
+  // console.log(dataTs, "dt");
 
   return (
     <DefaultLayout>

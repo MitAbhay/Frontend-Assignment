@@ -1,11 +1,16 @@
 "use Client";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useParams } from "next/navigation";
 
 const Navbar = () => {
   const pathname = usePathname();
   const router = useRouter();
+  const params = useParams();
+  const [selectedTime, setSelectedTime] = useState(
+    `Last ${params.timestamp / 60000} minutes`
+  );
 
   return (
     <div className="bg-white fixed w-full top-0 left-0 z-10">
@@ -153,29 +158,46 @@ const Navbar = () => {
           <div className="flex items-center justify-center">
             <div className="sm:flex sm:gap-4 border-gray-700">
               <select
+                defaultValue={selectedTime}
+                onChange={(e) => {
+                  setSelectedTime(e.target.value);
+                  console.log(selectedTime);
+                }}
                 name="dropdown"
                 id=""
                 className="bg-white border-2 border-slate-300 rounded-md p-1"
               >
                 <option
-                  onClick={() => router.push(`/logs/${300000}`)}
+                  onClick={() => {
+                    pathname.includes("logs")
+                      ? router.push(`/logs/${300000}`)
+                      : router.push(`/metrics/${300000}`);
+                  }}
                   value="Last 5 minutes"
                   className="text-sm p-1"
                 >
                   Last 5 minutes
                 </option>
                 <hr className="text-slate-400" />
-
                 <option
-                  onClick={() => router.push(`/logs/${900000}`)}
+                  onClick={() => {
+                    pathname.includes("logs")
+                      ? router.push(`/logs/${900000}`)
+                      : router.push(`/metrics/${900000}`);
+                  }}
                   value="Last 15 minutes"
                   className="text-sm p-1"
                 >
                   Last 15 minutes
                 </option>
                 <hr className="text-slate-400" />
+
                 <option
-                  onClick={() => router.push(`/logs/${1800000}`)}
+                  onClick={() => {
+                    pathname.includes("logs")
+                      ? router.push(`/logs/${1800000}`)
+                      : router.push(`/metrics/${1800000}`);
+                  }}
                   value="Last 30 minutes"
                   className="text-sm p-1"
                 >
@@ -183,7 +205,11 @@ const Navbar = () => {
                 </option>
                 <hr className="text-slate-400" />
                 <option
-                  onClick={() => router.push(`/logs/${3600000}`)}
+                  onClick={() => {
+                    pathname.includes("logs")
+                      ? router.push(`/logs/${3600000}`)
+                      : router.push(`/metrics/${3600000}`);
+                  }}
                   value="Last 1 hour"
                   className="text-sm p-1"
                 >
@@ -191,7 +217,11 @@ const Navbar = () => {
                 </option>
                 <hr className="text-slate-400" />
                 <option
-                  onClick={() => router.push(`/logs/${10800000}`)}
+                  onClick={() => {
+                    pathname.includes("logs")
+                      ? router.push(`/logs/${10800000}`)
+                      : router.push(`/metrics/${10800000}`);
+                  }}
                   value="Last 3 hours"
                   className="text-sm p-1"
                 >
@@ -199,7 +229,11 @@ const Navbar = () => {
                 </option>
                 <hr className="text-slate-400" />
                 <option
-                  onClick={() => router.push(`/logs/${21600000}`)}
+                  onClick={() => {
+                    pathname.includes("logs")
+                      ? router.push(`/logs/${21600000}`)
+                      : router.push(`/metrics/${21600000}`);
+                  }}
                   value="Last 6 hours"
                   className="text-sm p-1"
                 >
