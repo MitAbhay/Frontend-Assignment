@@ -1,3 +1,4 @@
+import { ApexOptions } from "apexcharts";
 import React, { useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
@@ -20,61 +21,62 @@ const NetworkChart = ({ dataPoints, dataTs }) => {
         data: dataPoints["Network Usage"][2],
       },
     ],
-    options: {
-      chart: {
-        height: 350,
-        type: "line",
-        dropShadow: {
-          enabled: true,
-          color: "#000",
-          top: 18,
-          left: 7,
-          blur: 10,
-          opacity: 0.2,
-        },
-        toolbar: {
-          show: false,
-        },
-      },
-      colors: ["#DC2626", "#2563EB", "#059669"],
-      dataLabels: {
-        enabled: false,
-      },
-      stroke: {
-        curve: "straight",
-      },
-      title: {
-        text: "Network Usage",
-        align: "left",
-      },
-      grid: {
-        borderColor: "#e7e7e7",
-        row: {
-          colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
-          opacity: 0.5,
-        },
-      },
-      markers: {
-        size: 1,
-      },
-      xaxis: {
-        // catgories: ["A", "B"],
+  };
 
-        categories: dataTs["Network Usage"][0],
+  const options: ApexOptions = {
+    chart: {
+      height: 350,
+      type: "line",
+      dropShadow: {
+        enabled: true,
+        color: "#000",
+        top: 18,
+        left: 7,
+        blur: 10,
+        opacity: 0.2,
       },
-      yaxis: {
-        min: Math.min(...dataPoints["Network Usage"][2]),
-        max: Math.max(...dataPoints["Network Usage"][0]),
-        // min: 0,
-        // max: 100,
+      toolbar: {
+        show: false,
       },
-      legend: {
-        position: "top",
-        horizontalAlign: "right",
-        floating: true,
-        offsetY: -25,
-        offsetX: -5,
+    },
+    colors: ["#DC2626", "#2563EB", "#059669"],
+    dataLabels: {
+      enabled: false,
+    },
+    stroke: {
+      curve: "straight",
+    },
+    title: {
+      text: "Network Usage",
+      align: "left",
+    },
+    grid: {
+      borderColor: "#e7e7e7",
+      row: {
+        colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
+        opacity: 0.5,
       },
+    },
+    markers: {
+      size: 1,
+    },
+    xaxis: {
+      // catgories: ["A", "B"],
+
+      categories: dataTs["Network Usage"][0],
+    },
+    yaxis: {
+      min: Math.min(...dataPoints["Network Usage"][2]),
+      max: Math.max(...dataPoints["Network Usage"][0]),
+      // min: 0,
+      // max: 100,
+    },
+    legend: {
+      position: "top",
+      horizontalAlign: "right",
+      floating: true,
+      offsetY: -25,
+      offsetX: -5,
     },
   };
 
@@ -85,7 +87,7 @@ const NetworkChart = ({ dataPoints, dataTs }) => {
           width="800px"
           height="400px"
           className="p-4"
-          options={networkUsage.options}
+          options={options}
           series={networkUsage.series}
         />
       </div>
