@@ -57,7 +57,7 @@ const Metrics = () => {
   };
 
   useEffect(() => {
-    const startTs = Date.now() - params.timestamp;
+    const startTs = Date.now() - Number(params.timestamp);
     const endTs = Date.now();
     const limit = 180;
     var start = startTs;
