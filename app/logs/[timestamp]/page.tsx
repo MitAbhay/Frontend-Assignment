@@ -47,7 +47,7 @@ const Logs = () => {
       var es = e.toLocaleString();
       setEnd(es);
       setLoading(true);
-      MimicLogs.fetchPreviousLogs({ startTs, endTs, limit })
+      MimicLogs.fetchPreviousLogs(startTs, endTs, limit)
         .then((data) => {
           setLogs(data.slice().reverse());
           setLiveLogsCount(data.length);

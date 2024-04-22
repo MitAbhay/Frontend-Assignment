@@ -46,7 +46,7 @@ export class MimicLogs {
    * @param {number} limit
    * @returns {Promise<{timestamp: number; message: string}[]>}
    */
-  static fetchPreviousLogs({ startTs, endTs, limit }) {
+  static fetchPreviousLogs(startTs, endTs, limit) {
     return new Promise((resolve) => {
       const delay = 250 + Math.random() * 2750;
       const randomPastTs = Math.max(
