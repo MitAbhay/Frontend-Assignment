@@ -11,10 +11,10 @@ const meta = {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
     layout: "centered",
   },
-  args: {
-    dataPoints: fn(),
-    dataTs: fn(),
-  },
+  // args: {
+  //   dataPoints: fn(),
+  //   dataTs: fn(),
+  // },
 } satisfies Meta<typeof CPUChart>;
 
 export default meta;
