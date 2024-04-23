@@ -1,8 +1,58 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Logs and Metrics (TrueFoundry)
 
-## Getting Started
+## Description
 
-First, run the development server:
+This project is a NexJS/React application developed as an assignment task for TrueFoundry. The goal is to create an application that allows users to fetch and view system logs and metrics. The application consists of two screens: Logs and Metrics, which can be toggled between using the Navbar. The SPA navigation is integrated.
+
+## Problem Statement
+
+The task involves creating a React application with the following features based on the provided Figma design:
+
+- Logs screen with a terminal-like view for rendering logs.
+- Metrics screen with four charts rendered using Charts.
+- Both screens should support time-range based filtering, live logs, infinite scroll, and pagination.
+- The application should have a Storybook for documenting all components.
+
+## Libraries Used
+
+- apexcharts: ^3.48.0,
+- next: 14.2.2,
+- react: ^18,
+- react-apexcharts: ^1.4.1,
+- react-dom: ^18,
+- recharts: ^2.12.6
+
+### Logs
+
+1. Terminal-like view for rendering logs.
+2. Quick selections for time-range (Last {n} minutes/hours).
+3. Custom time range selection with a date and time range picker.
+4. Subscription to live logs with continuous population at the bottom.
+5. Autoscroll to latest log line.
+6. Infinite scroll and pagination for previous logs.
+7. Display count of live logs below the fold with scroll-to-latest logs option.
+
+### Metrics
+
+1. Four charts (mix of line and area charts) rendered using apexcharts with React.
+2. Time range based filtering of system logs similar to logs screen.
+3. Select and drag over any section within a chart to view logs for the corresponding time range.
+
+### Storybook
+
+1. Hierarchical list of all components used.
+2. Preview of all components.
+
+## URL Scheme
+
+1. Logs: `/logs/${timestamp}`
+2. Metrics: `/metrics/${timestamp}`
+
+## How to Run Project
+
+```bash
+npm i
+```
 
 ```bash
 npm run dev
@@ -14,23 +64,8 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## How to Run Storybook
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+npm run storybook
+```
